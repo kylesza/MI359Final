@@ -12,6 +12,14 @@
 </head>
 
 <body>
+<g:hasErrors bean="${activities}">
+    <ul>
+        <g:eachError var="err" bean="${activities}">
+            <li><g:message error="${err}"/></li>
+        </g:eachError>
+    </ul>
+</g:hasErrors>
+
 <div id="floating-panel">
     <g:form id="geocode-form">
         Name: <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" /><br>
@@ -19,7 +27,7 @@
         Type: <g:field type="activityType" name="activityType" placeholder="420" /><br>
         Description: <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" /><br>
         Address: <g:textField id="address" name="address" value="" /><br>
-        <input id="submit" type="button" value="Geocode">
+        <input id="submit" type="button" value="Submit">
     </g:form>
 </div>
 %{--<div id="map" style="height: 500px; width: 100%;"></div>--}%
@@ -40,7 +48,7 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     $.ajax({
                         url:"<g:createLink url="[action:'saveEvent',controller:'addActivities']" />",
-                        dataType: "json",
+                        dataType: "text",
                         data: {
                             activityName: activityName,
                             activityPrice: activityPrice,
@@ -50,7 +58,9 @@
                             lng:results[0].geometry.location.lng
                         },
                         asnyc: false,
-                        success: function(data){
+                        success: function(response){
+                            window.location.href = response;
+//                            console.log("Response: " + response);
                             // REDIRECT HERE? who knows....
                             // Either here or in the controller action 'saveEvent'
                         }
@@ -61,6 +71,7 @@
                 }
             });
         }
+
 //        initMap();
     })(jQuery);
 

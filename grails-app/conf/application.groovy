@@ -1,4 +1,4 @@
-
+grails.databinding.convertEmptyStringsToNull = false
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.logout.postOnly = false

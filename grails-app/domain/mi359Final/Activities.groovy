@@ -9,5 +9,9 @@ class Activities {
     double lng
 
     static constraints = {
+        activityName(blank: false, nullable: true)
+        activityPrice(blank: false, nullable: true)
+        activityType()
+        activityDescription(blank: true)
     }
 }

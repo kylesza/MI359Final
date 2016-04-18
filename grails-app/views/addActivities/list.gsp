@@ -17,5 +17,6 @@
             <li>Name: ${i.activityName}</li>
         </g:each>
     </ul>
+    <g:link action="index" controller="addActivities">Add more</g:link>
 </body>
 </html>
