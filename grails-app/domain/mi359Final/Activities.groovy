@@ -5,6 +5,8 @@ class Activities {
     int activityPrice
     int activityType
     String activityDescription
+    double lat
+    double lng
 
     static constraints = {
     }
