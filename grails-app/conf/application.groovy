@@ -14,7 +14,15 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/js/**',       access: ['permitAll']],
 	[pattern: '/**/css/**',      access: ['permitAll']],
 	[pattern: '/**/images/**',   access: ['permitAll']],
-	[pattern: '/**/favicon.ico', access: ['permitAll']]
+	[pattern: '/**/favicon.ico', access: ['permitAll']],
+    [pattern: '/account/**',     access: ['permitAll']],
+    [pattern: '/addActivities/**',     access: ['permitAll']],
+    [pattern: '/findActivities/**',     access: ['permitAll']],
+    [pattern: '/browseUsers/**',     access: ['permitAll']],
+    [pattern: '/admin/**',     access: ['permitAll']],
+    [pattern: '/events/**',     access: ['permitAll']],
+
+
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
