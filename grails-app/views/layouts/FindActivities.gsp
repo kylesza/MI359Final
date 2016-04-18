@@ -24,15 +24,17 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../events/index">My Events</a></li>
-                        <sec:access expression="hasRole('ADMIN_ROLE')">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
                             <li role="separator" class="divider"></li>
                             <li><a href="../admin/index">Admin</a></li>
                             <li><a href="../browseUsers/index">Browse Users</a></li>
-                        </sec:access>
+                        </sec:ifAnyGranted>
                     </ul>
                 </li>
                 <sec:ifLoggedIn>
-                    <li><a href="#">Logout</a></li>
+                    <li>
+                        <g:link controller="logout">Logout</g:link>
+                    </li>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
                     <li><a href="../auth">Login</a></li>
@@ -41,7 +43,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="jumbotron">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46877.815583205986!2d-84.51120885524018!3d42.748940665526256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822e875eae5abf3%3A0x3b19b3f7117ca625!2sEast+Lansing%2C+MI!5e0!3m2!1sen!2sus!4v1460993507895" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
@@ -68,6 +70,24 @@
                     </div>
                 </div>
 
+                <hr>
+
+                <div class="well">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
+                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
+                            </a>
+                        </div>
+                        <h1>Test Event 3</h1>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi nunc, finibus nec risus quis, scelerisque ultricies nibh. Ut vel est ut urna dapibus fermentum. Nam ornare nibh sed molestie pulvinar. Vivamus tincidunt, metus nec varius mollis, turpis turpis scelerisque magna, id egestas ante lacus eu diam. Pellentesque vel turpis.
+                    </div>
+                </div>
+
+
+
+
+
 
 
 
@@ -75,10 +95,10 @@
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
-                        <a href="april.html">&larr; Older</a>
+                        <a href="#">&larr; Older</a>
                     </li>
                     <li class="next">
-                        <a href="index.html">Newer &rarr;</a>
+                        <a href="#">Newer &rarr;</a>
                     </li>
                 </ul>
 

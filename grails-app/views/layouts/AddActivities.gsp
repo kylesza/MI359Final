@@ -24,15 +24,17 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../events/index">My Events</a></li>
-                        <sec:access expression="hasRole('ADMIN_ROLE')">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
                             <li role="separator" class="divider"></li>
                             <li><a href="../admin/index">Admin</a></li>
                             <li><a href="../browseUsers/index">Browse Users</a></li>
-                        </sec:access>
+                        </sec:ifAnyGranted>
                     </ul>
                 </li>
                 <sec:ifLoggedIn>
-                    <li><a href="#">Logout</a></li>
+                    <li>
+                        <g:link controller="logout">Logout</g:link>
+                    </li>
                 </sec:ifLoggedIn>
                 <sec:ifNotLoggedIn>
                     <li><a href="../auth">Login</a></li>

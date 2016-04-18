@@ -1,6 +1,7 @@
 
 
 // Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'mi359Final.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'mi359Final.UserRole'
 grails.plugin.springsecurity.authority.className = 'mi359Final.Role'
@@ -21,6 +22,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     [pattern: '/browseUsers/**',     access: ['permitAll']],
     [pattern: '/admin/**',     access: ['permitAll']],
     [pattern: '/events/**',     access: ['permitAll']],
+	[pattern: '/auth.gsp',		access: ['permitAll']]
 
 
 ]
