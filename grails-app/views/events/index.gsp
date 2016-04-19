@@ -13,9 +13,11 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <ul>
+            <ul id="events-list">
                 <g:each var="i" in="${activities}">
                     <li class="${i.activityName}">Name: ${i.activityName}</li>
+                    %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
+                    %{-- Inline styles should probs be put in style sheet --}%
                     <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
                     <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
                 </g:each>
@@ -32,31 +34,31 @@
 <script>
     (function($) {
         function initMap() {
+            // Create the map:
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: {lat: -34.397, lng: 150.644}
+                zoom: 15,
+                center: {lat: 42.73391, lng: -84.47465499999998}
             });
-//            var input = "${activities}";
-//            var entries = input.split(", ");
-//            for(var i=0; i < entries.length; i+2){
-//                var pair = []
-//            }
 
+            // Get latLng from events:
+            var list = $("#events-list li");
+            for (var i = 1; i <= list.length; i+=3){ // Loop through li starting at each activity's lat
+
+                // latLng must be a map of form
+                // {lat: NUMBER_HERE, lng: NUMBER_HERE}
+                var latLng = new Object();
+                latLng['lat'] = Number(list.eq(i).text());
+                latLng['lng'] = Number(list.eq(i+1).text());
+
+                // Add the marker to the map
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: latLng
+                });
+            }
         }
-        function geocodeAddress(geocoder, resultsMap) {
-            var address = document.getElementById('address').value;
-            geocoder.geocode({'address': address}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    resultsMap.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
+
+        // Build Map:
         initMap();
     })(jQuery);
 
