@@ -15,7 +15,9 @@
         <div class="col-sm-12">
             <ul>
                 <g:each var="i" in="${activities}">
-                    <li>Name: ${i.activityName}</li>
+                    <li class="${i.activityName}">Name: ${i.activityName}</li>
+                    <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
+                    <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
                 </g:each>
             </ul>
         </div>
@@ -34,14 +36,12 @@
                 zoom: 8,
                 center: {lat: -34.397, lng: 150.644}
             });
-            var geocoder = new google.maps.Geocoder();
-
-//            for (x in ${activities}){
-//                console.log('cool');
+//            var input = "${activities}";
+//            var entries = input.split(", ");
+//            for(var i=0; i < entries.length; i+2){
+//                var pair = []
 //            }
-//            document.getElementById('submit').addEventListener('click', function() {
-//                geocodeAddress(geocoder, map);
-//            });
+
         }
         function geocodeAddress(geocoder, resultsMap) {
             var address = document.getElementById('address').value;
@@ -49,7 +49,7 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     resultsMap.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
-                        map: resultsMap,
+                        map: map,
                         position: results[0].geometry.location
                     });
                 } else {
