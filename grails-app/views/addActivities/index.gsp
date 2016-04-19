@@ -12,17 +12,6 @@
 </head>
 
 <body>
-
-%{--<g:hasErrors bean="${activities}">--}%
-    %{--<g:eachError bean="${activities}" var="error">--}%
-        %{--${error.field}: <g:message error="${error}" />--}%
-        %{--<ul>--}%
-            %{--<g:each in="${error.codes}" var="code">--}%
-                %{--<li>${code}</li>--}%
-            %{--</g:each>--}%
-        %{--</ul>--}%
-    %{--</g:eachError>--}%
-%{--</g:hasErrors>--}%
 <div id="errorHolder" syle="display:none">
     <ul id="errorList"></ul>
 </div>
@@ -66,7 +55,7 @@
                         },
                         asnyc: false,
                         success: function(response){
-                            if(response === 'list'){ // If saving is successful, will redirect.
+                            if(response === '../events/index'){ // If saving is successful, will redirect.
                                 window.location.href = response;
                             } else {// Else, try to display errors
                                 var response = [response];

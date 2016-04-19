@@ -19,7 +19,7 @@ class AddActivitiesController {
 
         // Save new event:
         if (e.save()){ // if save was successful:
-            render(text: "list", contentType: "text/xml", encoding: "UTF-8")
+            render(text: "../events/index", contentType: "text/xml", encoding: "UTF-8")
         } else { // Save failed:
             // Make empty array to add all errors to:
             def errors = []

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <asset:stylesheet src="application.css"/>
     <asset:javascript src="application.js"/>
-
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <g:layoutHead/>
 </head>
 <body>
