@@ -36,6 +36,9 @@
             });
             var geocoder = new google.maps.Geocoder();
 
+//            for (x in ${activities}){
+//                console.log('cool');
+//            }
 //            document.getElementById('submit').addEventListener('click', function() {
 //                geocodeAddress(geocoder, map);
 //            });
