@@ -67,14 +67,14 @@
                         '<p>MAYBE EVENTUALLY HAVE THE USERNAME WHO POSTED THE EVENT</p>'+
                         '</div>'+
                         '</div>';
+
+                // Add the infowindow:
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
 
-
                 //Set <li><span> to correct label:
                 currentEvent.text(currentLabel);
-
 
                 // latLng must be a map of form
                 // {lat: NUMBER_HERE, lng: NUMBER_HERE}
@@ -82,12 +82,14 @@
                 latLng['lat'] = Number(list.eq(i).text());
                 latLng['lng'] = Number(list.eq(i+1).text());
 
-                // Add the marker to the map
+                // Add the marker and infowindow to the map
                 var marker = new google.maps.Marker({
                     map: map,
                     label: currentLabel,
                     position: latLng
                 });
+
+                // This makes it so we can open multiple info windows and not just the last one built:
                 google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){
                     return function() {
                         infowindow.setContent(contentString);
