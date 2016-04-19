@@ -12,14 +12,20 @@
 </head>
 
 <body>
-<g:hasErrors bean="${activities}">
-    <ul>
-        <g:eachError var="err" bean="${activities}">
-            <li><g:message error="${err}"/></li>
-        </g:eachError>
-    </ul>
-</g:hasErrors>
 
+%{--<g:hasErrors bean="${activities}">--}%
+    %{--<g:eachError bean="${activities}" var="error">--}%
+        %{--${error.field}: <g:message error="${error}" />--}%
+        %{--<ul>--}%
+            %{--<g:each in="${error.codes}" var="code">--}%
+                %{--<li>${code}</li>--}%
+            %{--</g:each>--}%
+        %{--</ul>--}%
+    %{--</g:eachError>--}%
+%{--</g:hasErrors>--}%
+<div id="errorHolder" syle="display:none">
+    <ul id="errorList"></ul>
+</div>
 <div id="floating-panel">
     <g:form id="geocode-form">
         Name: <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" /><br>
@@ -44,12 +50,13 @@
                 activityType = $('#activityType').val(),
                 activityDescription = $('#activityDescription').val(),
                 address = $('#address').val();
+
             geocoder.geocode({'address': address}, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     $.ajax({
                         url:"<g:createLink url="[action:'saveEvent',controller:'addActivities']" />",
                         dataType: "text",
-                        data: {
+                        data: { // This is what will get passed to controller in 'params' object
                             activityName: activityName,
                             activityPrice: activityPrice,
                             activityType: activityType,
@@ -59,10 +66,30 @@
                         },
                         asnyc: false,
                         success: function(response){
-                            window.location.href = response;
-//                            console.log("Response: " + response);
-                            // REDIRECT HERE? who knows....
-                            // Either here or in the controller action 'saveEvent'
+                            if(response === 'list'){ // If saving is successful, will redirect.
+                                window.location.href = response;
+                            } else {// Else, try to display errors
+                                var response = [response];
+                                var list = $("#errorList");
+                                var parent = list.parent();
+                                list.detach().empty().each(function(i){
+                                    for (var x = 0; x < response.length; x++){
+                                        $(this).append('<li>' + response[x] + '</li>');
+                                        if (x == response.length - 1){
+                                            $(this).appendTo(parent);
+                                        }
+                                    }
+                                });
+                                // detaches list from DOM so it doesn't try to refresh page,
+                                // empty list in case theres already in thing there,
+                                // each is really just to trigger for loop
+                                // for loop loops through each error in 'response' array to display.
+
+                                // Ideally, that's how that should work, but JS isn't recognizing the
+                                // response passed from controller as an array
+                                parent.css('display', 'block');
+                            }
+
                         }
                     });
 
