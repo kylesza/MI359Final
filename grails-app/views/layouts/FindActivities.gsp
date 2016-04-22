@@ -44,9 +44,10 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46877.815583205986!2d-84.51120885524018!3d42.748940665526256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822e875eae5abf3%3A0x3b19b3f7117ca625!2sEast+Lansing%2C+MI!5e0!3m2!1sen!2sus!4v1460993507895" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="map" style="width: 100%; height:400px;"></div>
+            </div>
     </div>
 
     <div class="container">
@@ -56,53 +57,108 @@
             <div class="col-md-8">
 
 
-
-
+                <g:each var="i" in="${activities}">
                 <div class="well">
                     <div class="row">
                         <div class="col-xs-6 col-md-3">
-                            <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
-                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
-                            </a>
+                                <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
+                                    <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
+                                </a>
+                                </div>
+                                    <h1 class="${i.activityName}"><span></span> ${i.activityName}</h1>
+                                %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
+                                %{-- Inline styles should probs be put in style sheet --}%
+                                    <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
+                                    <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
+                                    <p class="${i.activityName} description">${i.activityDescription}</p>
                         </div>
-                        <h1>Test Event 3</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi nunc, finibus nec risus quis, scelerisque ultricies nibh. Ut vel est ut urna dapibus fermentum. Nam ornare nibh sed molestie pulvinar. Vivamus tincidunt, metus nec varius mollis, turpis turpis scelerisque magna, id egestas ante lacus eu diam. Pellentesque vel turpis.
                     </div>
-                </div>
+                    <hr>
+                </g:each>
+
 
                 <hr>
 
-                <div class="well">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
-                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
-                            </a>
-                        </div>
-                        <h1>Test Event 3</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi nunc, finibus nec risus quis, scelerisque ultricies nibh. Ut vel est ut urna dapibus fermentum. Nam ornare nibh sed molestie pulvinar. Vivamus tincidunt, metus nec varius mollis, turpis turpis scelerisque magna, id egestas ante lacus eu diam. Pellentesque vel turpis.
-                    </div>
-                </div>
 
 
-
-
-
-
-
-
-
-                <!-- Pager -->
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
 
             </div>
+
+
+            <script>
+                (function($) {
+                    function initMap() {
+                        // set up labels for markers
+                        // will only work for 26 events, but at least it's something
+                        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        var labelIndex = 0;
+
+                        // Create the map:
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: {lat: 42.73391, lng: -84.47465499999998}
+                        });
+
+                        // Get latLng from events:
+                        var list = $("#events-list li");
+                        for (var i = 1; i <= list.length; i+=4){ // Loop through li starting at each activity's lat
+                            //Gather things for labels and info window:
+                            var currentLabel = labels[labelIndex++ % labels.length]; // Gets correct letter for label
+                            var currentEvent = list.eq(i-1).find('span'); // Finds correct <li><span> to add label to
+                            var currentName = list.eq(i-1).text().substr(2); // Substring gets rid of ': '
+                            var currentDescription = list.eq(i+2).text(); // Finds description
+
+
+                            // Set up description window...
+                            // Have to do it as a hidden <li> again for now... Hopefully maybe a better way, but whatever.
+                            var contentString = '<div id="content">'+
+                                    '<div id="siteNotice">'+
+                                    '</div>'+
+                                    '<h1 id="firstHeading" class="firstHeading">'+currentName+'</h1>'+
+                                    '<div id="bodyContent">'+
+                                    '<p>'+currentDescription+'</p>'+
+                                    '<p>MAYBE EVENTUALLY HAVE THE USERNAME WHO POSTED THE EVENT</p>'+
+                                    '</div>'+
+                                    '</div>';
+
+                            // Add the infowindow:
+                            var infowindow = new google.maps.InfoWindow({
+                                content: contentString
+                            });
+
+                            //Set <li><span> to correct label:
+                            currentEvent.text(currentLabel);
+
+                            // latLng must be a map of form
+                            // {lat: NUMBER_HERE, lng: NUMBER_HERE}
+                            var latLng = new Object();
+                            latLng['lat'] = Number(list.eq(i).text());
+                            latLng['lng'] = Number(list.eq(i+1).text());
+
+                            // Add the marker and infowindow to the map
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                label: currentLabel,
+                                position: latLng
+                            });
+
+                            // This makes it so we can open multiple info windows and not just the last one built:
+                            google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){
+                                return function() {
+                                    infowindow.setContent(contentString);
+                                    infowindow.open(map,marker);
+                                };
+                            })(marker,contentString,infowindow));
+                        }
+                    }
+
+                    // Build Map:
+                    initMap();
+                })(jQuery);
+
+
+
+            </script>
 
 
         %{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>--}%
