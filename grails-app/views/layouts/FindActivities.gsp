@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <asset:stylesheet src="application.css"/>
         <asset:javascript src="application.js"/>
-
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <g:layoutHead/>
     </head>
     <body>
@@ -43,19 +43,19 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="map" style="width: 100%; height:400px;"></div>
-            </div>
-    </div>
+    %{--<div class="container">--}%
+        %{--<div class="row">--}%
+            %{--<div class="col-sm-12">--}%
+                %{--<div id="map" style="width: 100%; height:400px;"></div>--}%
+            %{--</div>--}%
+    %{--</div>--}%
 
 
 
 
         %{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>--}%
         <g:layoutBody/>
-        <div class="footer" role="contentinfo"></div>
-        <div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+        %{--<div class="footer" role="contentinfo"></div>--}%
+        %{--<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>--}%
     </body>
 </html>

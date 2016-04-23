@@ -2,18 +2,40 @@
 <html>
 <head>
     <title></title>
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+        .map-row {
+            margin-bottom:30px;
+        }
+        ul.event-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul.event-list li {
+            list-style: none;
+        }
+        ul.event-list li.name {
+            font-size: 28px;
+            font-weight:700;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1></h1>
-    <hr>
+    <div class="row map-row">
+        <div class="col-xs-12">
+            <div id="map"></div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-8">
-
-
-            <g:each var="i" in="${activities}">
+            <g:each status="index" var="i" in="${activities}">
+                %{--status is just a variable that hold the index of which loop the each is on --}%
                 <div class="well">
                     <div class="row">
                         <div class="col-xs-6 col-md-3">
@@ -21,26 +43,22 @@
                                 <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
                             </a>
                         </div>
-                        <h1 class="${i.activityName}"><span></span> ${i.activityName}</h1>
-                        %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
-                        %{-- Inline styles should probs be put in style sheet --}%
-                        <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
-                        <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
-                        <p class="${i.activityName} description">${i.activityDescription}</p>
+                        <div class="col-xs-6 col-md-9">
+                            <ul class="event-list" id="${index}">
+                                <li class="${i.activityName} name"><span></span>: ${i.activityName}</li>
+                                %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
+                                %{-- Inline styles should probs be put in style sheet --}%
+                                <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
+                                <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
+                                <li class="${i.activityName} description">${i.activityDescription}</li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
                 <hr>
             </g:each>
-
-
-            <hr>
-
-
-
-
         </div>
-
-
         <script>
             (function($) {
                 function initMap() {
@@ -55,18 +73,23 @@
                         center: {lat: 42.73391, lng: -84.47465499999998}
                     });
 
-                    // Get latLng from events:
-                    var list = $("#events-list li");
-                    for (var i = 1; i <= list.length; i+=4){ // Loop through li starting at each activity's lat
-                        //Gather things for labels and info window:
+                    // Get number of events:
+                    var numberOfEvents = $('.event-list').length - 1;
+                    var events = [];
+                    for (var i = 0; i <= numberOfEvents; i++){ // Loop through li starting at each activity's lat
+                        var currentID = "#" + i + " li"; // Set up string for selector.
+                        var currentEvent = $(currentID); // Find each event list, one by one.
+                        events.push(currentEvent); // Add the event to the array of events
+                    }
+//                    console.log(events.length);
+                    for (var i=0; i <= events.length - 1; i++){
+                        var currentName = events[i].eq(0).text().substr(2); // Get event name
+                        var currentLat = Number(events[i].eq(1).text()); // Get event lat
+                        var currentLng = Number(events[i].eq(2).text()); // Get event lng
+                        var currentDescription = events[i].eq(3).text(); // Get event description
                         var currentLabel = labels[labelIndex++ % labels.length]; // Gets correct letter for label
-                        var currentEvent = list.eq(i-1).find('span'); // Finds correct <li><span> to add label to
-                        var currentName = list.eq(i-1).text().substr(2); // Substring gets rid of ': '
-                        var currentDescription = list.eq(i+2).text(); // Finds description
-
-
-                        // Set up description window...
-                        // Have to do it as a hidden <li> again for now... Hopefully maybe a better way, but whatever.
+                        var currentSpan = events[i].eq(0).find('span');// Find the span to add the label to
+                        // Create infowindow:
                         var contentString = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
@@ -77,19 +100,18 @@
                                 '</div>'+
                                 '</div>';
 
+                        // Create map to pass to marker maker thing:
+                        var latLng = new Object();
+                        latLng['lat'] = currentLat;
+                        latLng['lng'] = currentLng;
+
+                        // Set span to correct label:
+                        currentSpan.text(currentLabel);
+
                         // Add the infowindow:
                         var infowindow = new google.maps.InfoWindow({
                             content: contentString
                         });
-
-                        //Set <li><span> to correct label:
-                        currentEvent.text(currentLabel);
-
-                        // latLng must be a map of form
-                        // {lat: NUMBER_HERE, lng: NUMBER_HERE}
-                        var latLng = new Object();
-                        latLng['lat'] = Number(list.eq(i).text());
-                        latLng['lng'] = Number(list.eq(i+1).text());
 
                         // Add the marker and infowindow to the map
                         var marker = new google.maps.Marker({
@@ -115,6 +137,7 @@
 
 
         </script>
-
+    </div>
+</div>
 </body>
 </html>
