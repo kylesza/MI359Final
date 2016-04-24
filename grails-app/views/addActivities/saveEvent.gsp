@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: mattjuszczyk
-  Date: 4/4/16
-  Time: 12:58 PM
+  Date: 4/18/16
+  Time: 3:36 PM
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
 
 </body>
 </html>

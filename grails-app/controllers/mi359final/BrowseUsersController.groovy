@@ -1,7 +1,6 @@
 package mi359final
 
-class FindActivitiesController {
+class BrowseUsersController {
 
     def index() { }
-
 }
