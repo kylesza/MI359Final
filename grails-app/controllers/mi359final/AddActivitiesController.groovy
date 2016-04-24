@@ -15,7 +15,7 @@ class AddActivitiesController {
     def saveEvent () {
         // Define a new event:
         def e = new Activities(activityDescription: params.activityDescription, activityName: params.activityName,
-                activityPrice: params.activityPrice, activityType: params.activityType, lat: params.lat, lng: params.lng)
+                activityPrice: params.activityPrice, activityType: params.activityType, lat: params.lat, lng: params.lng, approved: params.approved)
 
         // Save new event:
         if (e.save()){ // if save was successful:

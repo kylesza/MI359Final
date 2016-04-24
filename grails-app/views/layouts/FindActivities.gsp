@@ -55,42 +55,23 @@
         <div class="row">
             <div class="col-md-8">
 
-
-
-
-                <div class="well">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
-                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
-                            </a>
+                <g:each in="${activities}">
+                    <g:if test="${it.approved}">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-3">
+                                    <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
+                                        <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
+                                    </a>
+                                </div>
+                                <h1>${it.activityName}</h1>
+                                ${it.activityDescription}
+                            </div>
                         </div>
-                        <h1>Test Event 3</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi nunc, finibus nec risus quis, scelerisque ultricies nibh. Ut vel est ut urna dapibus fermentum. Nam ornare nibh sed molestie pulvinar. Vivamus tincidunt, metus nec varius mollis, turpis turpis scelerisque magna, id egestas ante lacus eu diam. Pellentesque vel turpis.
-                    </div>
-                </div>
+                    </g:if>
+                </g:each>
 
                 <hr>
-
-                <div class="well">
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
-                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
-                            </a>
-                        </div>
-                        <h1>Test Event 3</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mi nunc, finibus nec risus quis, scelerisque ultricies nibh. Ut vel est ut urna dapibus fermentum. Nam ornare nibh sed molestie pulvinar. Vivamus tincidunt, metus nec varius mollis, turpis turpis scelerisque magna, id egestas ante lacus eu diam. Pellentesque vel turpis.
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
 
                 <!-- Pager -->
                 <ul class="pager">

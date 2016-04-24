@@ -51,7 +51,8 @@
                             activityType: activityType,
                             activityDescription: activityDescription,
                             lat:results[0].geometry.location.lat,
-                            lng:results[0].geometry.location.lng
+                            lng:results[0].geometry.location.lng,
+                            approved: false,
                         },
                         asnyc: false,
                         success: function(response){

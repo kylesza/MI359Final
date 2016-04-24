@@ -15,12 +15,14 @@
         <div class="col-sm-12">
             <ul id="events-list">
                 <g:each var="i" in="${activities}">
-                    <li class="${i.activityName}"><span></span>: ${i.activityName}</li>
-                    %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
-                    %{-- Inline styles should probs be put in style sheet --}%
-                    <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
-                    <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
-                    <li class="${i.activityName} description" style="display: none;">${i.activityDescription}</li>
+                    <g:if test="${i.approved}">
+                        <li class="${i.activityName}"><span></span>: ${i.activityName}</li>
+                        %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
+                        %{-- Inline styles should probs be put in style sheet --}%
+                        <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
+                        <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
+                        <li class="${i.activityName} description" style="display: none;">${i.activityDescription}</li>
+                    </g:if>
                 </g:each>
             </ul>
         </div>

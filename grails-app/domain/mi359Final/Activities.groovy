@@ -7,6 +7,7 @@ class Activities {
     String activityDescription
     double lat
     double lng
+    boolean approved
 
     static constraints = {
         activityName(blank: false, nullable: true)
