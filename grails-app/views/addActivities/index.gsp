@@ -22,6 +22,8 @@
         Type: <g:field type="activityType" name="activityType" placeholder="420" /><br>
         Description: <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" /><br>
         Address: <g:textField id="address" name="address" value="" /><br>
+        Start Date: <g:textField id="startDate" name="startDate" placeholder="xx/xx/xx" /><br>
+        End Date: <g:textField id="endDate" name="endDate" placeholder="xx/xx/xx" /><br>
         <input id="submit" type="button" value="Submit">
     </g:form>
 </div>
@@ -39,7 +41,9 @@
                 activityPrice = $('#activityPrice').val(),
                 activityType = $('#activityType').val(),
                 activityDescription = $('#activityDescription').val(),
-                address = $('#address').val();
+                address = $('#address').val(),
+                startDate = $('#startDate').val(),
+                endDate = $('#endDate').val();
 
             geocoder.geocode({'address': address}, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
@@ -51,6 +55,8 @@
                             activityPrice: activityPrice,
                             activityType: activityType,
                             activityDescription: activityDescription,
+                            startDate: startDate,
+                            endDate: endDate,
                             lat:results[0].geometry.location.lat,
                             lng:results[0].geometry.location.lng,
                             approved: false,

@@ -4,6 +4,8 @@ class Activities {
     String activityName
     int activityPrice
     int activityType
+    String startDate
+    String endDate
     String activityDescription
     double lat
     double lng

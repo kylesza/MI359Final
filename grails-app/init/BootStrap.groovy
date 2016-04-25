@@ -22,15 +22,15 @@ class BootStrap {
         UserRole.create user3, userRole
 
         def activity = new Activities(activityDescription: 'Charity 3 Vs. 3 Basketball this saturday at IM West!', activityName: 'Basketball',
-                activityPrice: 4 , activityType: 4 , lat: 42.728901 , lng: -84.487098 , approved: false)
+                activityPrice: 4, activityType: 4, lat: 42.728901, lng: -84.487098, approved: false, startDate: 'April 20', endDate: 'April 21')
         activity.save()
 
         def activity2 = new Activities(activityDescription: 'Come on over and enjoy a fun afternoon of friendly football!', activityName: 'Football',
-                activityPrice: 0 , activityType: 4 , lat: 42.737454 , lng: -84.493284 , approved: false)
+                activityPrice: 0, activityType: 4, lat: 42.737454, lng: -84.493284, approved: false, startDate: 'April 20', endDate: 'April 21')
         activity2.save()
 
         def activity3 = new Activities(activityDescription: 'Come out and support the MSU hockey team this friday at 8pm!', activityName: 'Hockey',
-                activityPrice: 10 , activityType: 4 , lat: 42.725607 , lng: -84.487788 , approved: false)
+                activityPrice: 10, activityType: 4, lat: 42.725607, lng: -84.487788, approved: false, startDate: 'April 20', endDate: 'April 21')
         activity3.save()
 
         UserRole.withSession {
