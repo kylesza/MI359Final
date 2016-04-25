@@ -114,6 +114,10 @@
                 var currentLabel = labels[labelIndex++ % labels.length]; // Gets correct letter for label
                 var currentSpan = events[i].eq(0).find('span');// Find the span to add the label to
                 // Create infowindow:
+
+                console.log("currentName: " + currentName + "; currentLat: " + currentLat + "; currentLng: " + currentLng
+                + "; currentDescription: " + currentDescription + "; currentLabel: " + currentLabel + "; currentSpan: " + currentSpan);
+
                 var contentString = '<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
