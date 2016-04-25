@@ -27,7 +27,6 @@
 </div>
 %{--<div id="map" style="height: 500px; width: 100%;"></div>--}%
 
-<<<<<<< HEAD
 <h1>Add New Event</h1>
 <g:form action="createEvent">
     Event Name:<g:textField name="eventName"/><br/>
@@ -51,7 +50,6 @@
     <g:submitButton name="submitEvent"/>
 </g:form><br/>
 
-=======
 <script type="text/javascript">
     (function($) {
         $('#submit').click(function() {
@@ -119,6 +117,5 @@
 
 
 </script>
->>>>>>> b8792ca30c2ff564d53b6359fccc39ac0f2017d7
 </body>
 </html>
