@@ -11,7 +11,7 @@ class Activities {
     static constraints = {
         activityName(blank: false, nullable: true)
         activityPrice(blank: false, nullable: true)
-        activityType()
+        //activityType()
         activityDescription(blank: true)
     }
 }
