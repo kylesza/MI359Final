@@ -56,7 +56,7 @@
                         },
                         asnyc: false,
                         success: function(response){
-                            if(response === '../events/index'){ // If saving is successful, will redirect.
+                            if(response === '../findActivities/index'){ // If saving is successful, will redirect.
                                 window.location.href = response;
                             } else {// Else, try to display errors
                                 var response = [response];
