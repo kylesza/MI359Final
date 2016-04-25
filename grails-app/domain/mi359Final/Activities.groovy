@@ -3,6 +3,7 @@ package mi359Final
 class Activities {
     String activityName
     int activityPrice
+    int activityType
     String activityDescription
     double lat
     double lng
@@ -11,7 +12,7 @@ class Activities {
     static constraints = {
         activityName(blank: false, nullable: true)
         activityPrice(blank: false, nullable: true)
-        //activityType()
+        activityType(blank: true, nullable: true)
         activityDescription(blank: true)
     }
 }
