@@ -6,3 +6,4 @@ class ActivityTypes {
     static constraints = {
     }
 }
+

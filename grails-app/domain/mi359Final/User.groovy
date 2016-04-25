@@ -47,9 +47,17 @@ class User implements Serializable {
 	static constraints = {
 		password blank: false, password: true
 		username blank: false, unique: true
+
+		//		Related to image upload
+		avatar(nullable:true, maxSize: 16384 /* 16K */)
+		avatarType(nullable:true)
 	}
 
 	static mapping = {
 		password column: '`password`'
 	}
+
+	//		Related to image upload
+	byte[] avatar
+	String avatarType
 }
