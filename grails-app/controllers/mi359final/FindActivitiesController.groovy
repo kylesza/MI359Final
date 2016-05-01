@@ -5,8 +5,10 @@ import mi359Final.Activities
 class FindActivitiesController {
 
     def index() {
-        def activities = Activities.list()
+        def activities = Activities.list(params)
         [activities:activities]
+
+
     }
 
 }

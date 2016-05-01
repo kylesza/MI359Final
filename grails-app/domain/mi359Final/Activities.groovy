@@ -11,6 +11,10 @@ class Activities {
     double lng
     boolean approved
 
+//    static mapping = {
+//        sort activityName: "asc"
+//    }
+
     static constraints = {
         activityName(blank: false, nullable: true)
         activityPrice(blank: false, nullable: true)

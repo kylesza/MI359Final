@@ -5,7 +5,7 @@
   Time: 12:59 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="mi359Final.Activities" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
@@ -44,46 +44,64 @@
         <div class="col-md-8">
             <g:each var="i" status="index" in="${activities}">
                 <g:if test="${i.approved}">
-                    <div class="well">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-3">
-                                <a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">
-                                    <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="col-xs-6 col-md-9">
+                            %{--<div class="col-xs-6 col-md-3">--}%
+                                %{--<a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">--}%
+                                    %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">--}%
+                                %{--</a>--}%
+                            %{--</div>--}%
                                 <ul class="event-list" id="${index}">
-                                    <li class="${i.activityName} name"><span></span>: ${i.activityName}</li>
+                                    <li class="${i.activityName} name" style="display:none;"><span></span>: ${i.activityName}</li>
                                     %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
                                     %{-- Inline styles should probs be put in style sheet --}%
                                     <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
                                     <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
-                                    <li class="${i.activityName} description">${i.activityDescription}</li>
+                                    <li class="${i.activityName} description" style="display:none;">${i.activityDescription}</li>
                                 </ul>
 
                             </div>
                         </div>
-                    </div>
                 </g:if>
             </g:each>
 
+            <div class="container">
+            <div class="content scaffold-list" role="main">
+                <h1>Activities</h1>
+                <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
+                <div class="well">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <g:sortableColumn property="activityName" defaultOrder="desc"
+                                          title="Activity Name" titleKey="activities.activityName" />
+                        <g:sortableColumn property="activityPrice" title="Activity Price" />
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <g:each in="${activities}" status="i" var="activityInstance">
+                            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td>
+                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                            </td>
+                            <td>${activityInstance.activityName}</td>
+                            <td>$${activityInstance.activityPrice}</td>
+                            <td>${activityInstance.activityDescription}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                <div class="pagination">
+                    <g:paginate total="${activities}" />
+                </div>
+            </div>
             <hr>
 
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="previous">
-                    <a href="#">&larr; Older</a>
-                </li>
-                <li class="next">
-                    <a href="#">Newer &rarr;</a>
-                </li>
-            </ul>
 
         </div>
-        </div>
-        <div class="col-md-4">
-        </div>
     </div>
+
 </div>
 <script>
     (function($) {
