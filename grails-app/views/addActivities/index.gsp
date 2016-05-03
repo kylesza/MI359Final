@@ -9,26 +9,71 @@
 <html>
 <head>
     <title></title>
+    <style>
+        form {
+            padding: 0 50px;
+            max-width: 500px;
+        }
+        form .row {
+            margin-bottom:5px;
+        }
+        form input:not(#submit) {
+            float:right;
+        }
+    </style>
 </head>
 
 <body>
-<div id="errorHolder" syle="display:none">
-    <ul id="errorList"></ul>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Input event information:</h1>
+            <div id="errorHolder" syle="display:none">
+                <ul id="errorList"></ul>
+            </div>
+            <div id="floating-panel">
+                <g:form id="geocode-form">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Name: <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Price: <g:field type="activityPrice" name="activityPrice" placeholder="420" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Type: <g:field type="activityType" name="activityType" placeholder="420" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Description: <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Address: <g:textField id="address" name="address" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            Start Date: <g:textField id="startDate" name="startDate" placeholder="xx/xx/xx" /><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            End Date: <g:textField id="endDate" name="endDate" placeholder="xx/xx/xx" /><br>
+                        </div>
+                    </div>
+                    <input id="submit" type="button" value="Submit">
+                </g:form>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="floating-panel">
-    <g:form id="geocode-form">
-        Name: <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" /><br>
-        Price: <g:field type="activityPrice" name="activityPrice" placeholder="420" /><br>
-        Type: <g:field type="activityType" name="activityType" placeholder="420" /><br>
-        Description: <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" /><br>
-        Address: <g:textField id="address" name="address" value="" /><br>
-        Start Date: <g:textField id="startDate" name="startDate" placeholder="xx/xx/xx" /><br>
-        End Date: <g:textField id="endDate" name="endDate" placeholder="xx/xx/xx" /><br>
-        <input id="submit" type="button" value="Submit">
-    </g:form>
-</div>
-%{--<div id="map" style="height: 500px; width: 100%;"></div>--}%
-
 
 <script type="text/javascript">
     (function($) {
