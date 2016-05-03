@@ -98,6 +98,27 @@
             </div>
             <hr>
 
+    %{--<g:form controller="FindActivities" action="searchResults">--}%
+        %{--Title: <g:textField name="name" value="${nameSearch}" />--}%
+        %{--<g:submitButton name="submit" value="Search" />--}%
+    %{--</g:form>--}%
+
+    %{--<g:if test="${results}">--}%
+        %{--<h1>Search Results</h1>--}%
+        %{--<table>--}%
+            %{--<tr>--}%
+                %{--<th>Title</th>--}%
+                %{--<th>Start Date</th>--}%
+            %{--</tr>--}%
+            %{--<g:each in="${results}">--}%
+                %{--<tr>--}%
+                    %{--<td>${it.title}</td>--}%
+                    %{--<td>${it.startTime}</td>--}%
+                %{--</tr>--}%
+            %{--</g:each>--}%
+        %{--</table>--}%
+    %{--</g:if>--}%
+
 
         </div>
     </div>
