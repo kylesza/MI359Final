@@ -6,7 +6,7 @@
 --%>
 
 <%@ page import="mi359Final.Activities" contentType="text/html;charset=UTF-8" %>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
     <style>
@@ -63,13 +63,22 @@
                 </g:if>
             </g:each>
 
-            <div class="container">
+
+    %{--<h2>Search <input type="text" id="searchfor"/><br></h2>--}%
+
+
+
+    <div class="container">
             <div class="content scaffold-list" role="main">
                 <h1>Activities</h1>
+
+
+
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
                 <div class="well">
-                <table class="table">
-                    <thead>
+                    <h2>Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
+
+                    <table class="order-table table">
                     <tr>
                         <th>Event</th>
                         <g:sortableColumn property="activityName" defaultOrder="desc"
@@ -90,6 +99,7 @@
                     </g:each>
                     </tbody>
                 </table>
+
                 </div>
                 </div>
                 <div class="pagination">
@@ -195,5 +205,61 @@
         initMap();
     })(jQuery);
 </script>
+
+<script>
+    var $rows = $('#table tr');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+</script>
+
+
+<script>
+    (function(document) {
+        'use strict';
+
+        var LightTableFilter = (function(Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function(table) {
+                    Arr.forEach.call(table.tBodies, function(tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
+            }
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function() {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function(input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function() {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+</script>
+
 </body>
 </html>

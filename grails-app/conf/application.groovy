@@ -30,7 +30,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 		[pattern: '/events/**',     access: ['permitAll']],
 		[pattern: '/auth.gsp',		access: ['permitAll']]
 
-
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
