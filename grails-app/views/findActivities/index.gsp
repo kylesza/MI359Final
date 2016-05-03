@@ -13,29 +13,21 @@
     #map {
         width: 100%;
         height: 400px;
-        border: 1px solid #63d297;
     }
     .map-row {
         margin-bottom:30px;
     }
-    .row.events .header {
-        color: #63d297;
-        font-weight: 700;
+    ul.event-list {
+        list-style: none;
+        padding-left: 0;
     }
-    .scaffold-list .well {
-        background-color: #202729;
+    ul.event-list li {
+        list-style: none;
     }
-    .scaffold-list table.event-table {
-        color: #FFF;
+    ul.event-list li.name {
+        font-size: 28px;
+        font-weight:700;
     }
-    .scaffold-list table.event-table th a {
-        color: #63d297;
-    }
-    .scaffold-list table.event-table tbody tr.even {
-        background-color: #dcdcdc;
-        color: #000;
-    }
-
     </style>
 </head>
 
@@ -48,55 +40,89 @@
             <div id="map" style="width: 100%; height:400px;"></div>
         </div>
     </div>
-    <div class="row events">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-8">
             <g:each var="i" status="index" in="${activities}">
                 <g:if test="${i.approved}">
-                    <ul class="event-list" id="${index}">
-                        <li class="${i.activityName} name" style="display:none;"><span></span>: ${i.activityName}</li>
-                        %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
-                        %{-- Inline styles should probs be put in style sheet --}%
-                        <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
-                        <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
-                        <li class="${i.activityName} description" style="display:none;">${i.activityDescription}</li>
-                    </ul>
+                            %{--<div class="col-xs-6 col-md-3">--}%
+                                %{--<a href="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" class="thumbnail">--}%
+                                    %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="...">--}%
+                                %{--</a>--}%
+                            %{--</div>--}%
+                                <ul class="event-list" id="${index}">
+                                    <li class="${i.activityName} name" style="display:none;"><span></span>: ${i.activityName}</li>
+                                    %{-- Put the activity's latLng here because I don't think it's accessible from JS... --}%
+                                    %{-- Inline styles should probs be put in style sheet --}%
+                                    <li class="${i.activityName} lat" style="display:none;">${i.lat}</li>
+                                    <li class="${i.activityName} lng" style="display:none;">${i.lng}</li>
+                                    <li class="${i.activityName} description" style="display:none;">${i.activityDescription}</li>
+                                </ul>
+
+                            </div>
+                        </div>
                 </g:if>
             </g:each>
 
+            <div class="container">
             <div class="content scaffold-list" role="main">
-                <h1 class="header">Activities</h1>
+                <h1>Activities</h1>
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
                 <div class="well">
-                    <table class="table event-table">
-                        <thead>
-                            <tr>
-                                <th>Event</th>
-                                <g:sortableColumn property="activityName" defaultOrder="desc"
-                                                  title="Activity Name" titleKey="activities.activityName" />
-                                <g:sortableColumn property="activityPrice" title="Activity Price" />
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <g:each in="${activities}" status="i" var="activityInstance">
-                            <g:if test="${activityInstance.approved}">
-                                <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
-                                    <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
-                                    <td>${activityInstance.activityName}</td>
-                                    <td>$${activityInstance.activityPrice}</td>
-                                    <td>${activityInstance.activityDescription}</td>
-                                </tr>
-                            </g:if>
-                        </g:each>
-                        </tbody>
-                    </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <g:sortableColumn property="activityName" defaultOrder="desc"
+                                          title="Activity Name" titleKey="activities.activityName" />
+                        <g:sortableColumn property="activityPrice" title="Activity Price" />
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <g:each in="${activities}" status="i" var="activityInstance">
+                            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td>
+                                <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                            </td>
+                            <td>${activityInstance.activityName}</td>
+                            <td>$${activityInstance.activityPrice}</td>
+                            <td>${activityInstance.activityDescription}</td>
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
                 </div>
                 </div>
-                %{--<div class="pagination">--}%
-                    %{--<g:paginate total="${activities}" />--}%
-                %{--</div>--}%
+                <div class="pagination">
+                    <g:paginate total="${activities}" />
+                </div>
             </div>
+            <hr>
+
+    %{--<g:form controller="FindActivities" action="searchResults">--}%
+        %{--Title: <g:textField name="name" value="${nameSearch}" />--}%
+        %{--<g:submitButton name="submit" value="Search" />--}%
+    %{--</g:form>--}%
+
+    %{--<g:if test="${results}">--}%
+        %{--<h1>Search Results</h1>--}%
+        %{--<table>--}%
+            %{--<tr>--}%
+                %{--<th>Title</th>--}%
+                %{--<th>Start Date</th>--}%
+            %{--</tr>--}%
+            %{--<g:each in="${results}">--}%
+                %{--<tr>--}%
+                    %{--<td>${it.title}</td>--}%
+                    %{--<td>${it.startTime}</td>--}%
+                %{--</tr>--}%
+            %{--</g:each>--}%
+        %{--</table>--}%
+    %{--</g:if>--}%
+
+
         </div>
     </div>
+
 </div>
 <script>
     (function($) {
@@ -125,14 +151,12 @@
                 var currentLng = Number(events[i].eq(2).text()); // Get event lng
                 var currentDescription = events[i].eq(3).text(); // Get event description
                 var currentLabel = labels[labelIndex++ % labels.length]; // Gets correct letter for label
-                var findSpan = ".event-details" + i;
-                console.log(findSpan);
-                var currentSpan = $(findSpan).eq(0).find('span');// Find the span to add the label to
-
-//                console.log("currentName: " + currentName + "; currentLat: " + currentLat + "; currentLng: " + currentLng
-//                + "; currentDescription: " + currentDescription + "; currentLabel: " + currentLabel + "; currentSpan: " + currentSpan);
-
+                var currentSpan = events[i].eq(0).find('span');// Find the span to add the label to
                 // Create infowindow:
+
+                console.log("currentName: " + currentName + "; currentLat: " + currentLat + "; currentLng: " + currentLng
+                + "; currentDescription: " + currentDescription + "; currentLabel: " + currentLabel + "; currentSpan: " + currentSpan);
+
                 var contentString = '<div id="content">'+
                         '<div id="siteNotice">'+
                         '</div>'+
@@ -142,13 +166,12 @@
                         '<p>MAYBE EVENTUALLY HAVE THE USERNAME WHO POSTED THE EVENT</p>'+
                         '</div>'+
                         '</div>';
-
                 // Create map to pass to marker maker thing:
                 var latLng = new Object();
                 latLng['lat'] = currentLat;
                 latLng['lng'] = currentLng;
                 // Set span to correct label:
-                currentSpan.text(currentLabel + ": ");
+                currentSpan.text(currentLabel);
                 // Add the infowindow:
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
