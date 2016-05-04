@@ -19,22 +19,27 @@
         margin-bottom:30px;
     }
     .row.events .header {
-        color: #63d297;
+        color: #080808;
         font-weight: 700;
     }
     .scaffold-list .well {
         background-color: #202729;
     }
     .scaffold-list table.event-table {
-        color: #FFF;
+        color: #080808;
+        border: 1px solid #080808;
+    }
+    .scaffold-list table.event-table td:not(:first-child), th:not(:first-child) {
+        border-left: 1px solid #f5f5f5;
     }
     .scaffold-list table.event-table th a {
         color: #63d297;
     }
     .scaffold-list table.event-table tbody tr.even {
         background-color: #dcdcdc;
-        color: #000;
+        color: #080808;
     }
+
 
     </style>
 </head>
@@ -66,7 +71,7 @@
             <div class="content scaffold-list" role="main">
                 <h1 class="header">Activities</h1>
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
-                <div class="well">
+                %{--<div class="well">--}%
                     <table class="table event-table">
                         <thead>
                             <tr>
@@ -89,15 +94,15 @@
                         </g:each>
                         </tbody>
                     </table>
-                </div>
-                </div>
+                %{--</div>--}%
+            </div>
                 %{--<div class="pagination">--}%
                     %{--<g:paginate total="${activities}" />--}%
                 %{--</div>--}%
-            </div>
         </div>
     </div>
 </div>
+%{--</div>--}%
 <script>
     (function($) {
         function initMap() {
