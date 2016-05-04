@@ -2,7 +2,10 @@ package mi359final
 
 import mi359Final.Activities
 
+
+
 class AddActivitiesController {
+
 
     def index() {}
     def list() {

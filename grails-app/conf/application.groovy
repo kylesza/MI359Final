@@ -4,7 +4,7 @@ grails.plugin.springsecurity.logout.postOnly = false
 logout.afterLogoutUrl = "/"
 
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/admin/index'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/findActivities/index'
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.logout.postOnly = false
@@ -22,12 +22,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 		[pattern: '/**/css/**',      access: ['permitAll']],
 		[pattern: '/**/images/**',   access: ['permitAll']],
 		[pattern: '/**/favicon.ico', access: ['permitAll']],
-		[pattern: '/account/**',     access: ['permitAll']],
-		[pattern: '/addActivities/**',     access: ['permitAll']],
+		[pattern: '/account/**',     access: ['isFullyAuthenticated()']],
+		[pattern: '/addActivities/**',     access: ['isFullyAuthenticated()']],
 		[pattern: '/findActivities/**',     access: ['permitAll']],
-		[pattern: '/browseUsers/**',     access: ['permitAll']],
+		[pattern: '/browseUsers/**',     access: ['ROLE_ADMIN']],
 		[pattern: '/admin/**',     access: ['permitAll']],
-		[pattern: '/events/**',     access: ['permitAll']],
+		[pattern: '/events/**',     access: ['ROLE_ADMIN', 'ROLE_USER']],
 		[pattern: '/auth.gsp',		access: ['permitAll']]
 
 

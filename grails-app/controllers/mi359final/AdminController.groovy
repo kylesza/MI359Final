@@ -3,14 +3,15 @@ package mi359final
 
 import mi359Final.Activities
 
+
 import mi359Final.UserRole
 import mi359Final.User
 import mi359Final.Role
 
+
 class AdminController {
 
     def springSecurityService
-
 
     def index() {
         def activities = Activities.list()
@@ -23,7 +24,6 @@ class AdminController {
         redirect(action:"index")
 
     }
-
     def addActivity() {
         def x = Activities.get(params.activityID as int)
         x.approved = true

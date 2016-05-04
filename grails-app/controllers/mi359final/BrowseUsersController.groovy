@@ -4,6 +4,7 @@ import mi359Final.User
 import mi359Final.UserRole
 import mi359Final.Role
 
+
 class BrowseUsersController {
 
     def index() {
