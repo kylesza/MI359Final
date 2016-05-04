@@ -86,21 +86,23 @@
                         <g:each in="${activities}" status="i" var="activityInstance">
                             <g:if test="${activityInstance.approved}">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
-                                    <g:if test="${activityInstance.activityType == 'Sports and Exercise'}">
-                                        <td><span></span><img src="http://ghsdawgs.com/students/cherry/sports1.jpg" alt="..." height="200" width="200"></td>
-                                    </g:if>
-                                    <g:elseif test="${activityInstance.activityType == 'Food and Drink'}">
-                                        <td><span></span><img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200"></td>
-                                    </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 'Film'}">
-                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
-                                    </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 'Music'}">
-                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
-                                    </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 'Outdoor'}">
-                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
-                                    </g:elseif>
+                                    <td><span></span>
+                                        <g:if test="${activityInstance.activityType == 'Sports and Exercise'}">
+                                            <img src="http://ghsdawgs.com/students/cherry/sports1.jpg" alt="..." height="200" width="200">
+                                        </g:if>
+                                        <g:elseif test="${activityInstance.activityType == 'Food and Drink'}">
+                                            <img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200">
+                                        </g:elseif>
+                                        <g:elseif test="${activityInstance.activityType == 'Film'}">
+                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                        </g:elseif>
+                                        <g:elseif test="${activityInstance.activityType == 'Music'}">
+                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                        </g:elseif>
+                                        <g:elseif test="${activityInstance.activityType == 'Outdoor'}">
+                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                        </g:elseif>
+                                    </td>
                                         <td>${activityInstance.activityName}</td>
                                         <td>${activityInstance.activityPrice}</td>
                                         <td>${activityInstance.activityType}</td>
