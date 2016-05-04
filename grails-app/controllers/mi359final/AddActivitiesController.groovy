@@ -15,19 +15,19 @@ class AddActivitiesController {
     def saveEvent () {
         // Figure out event type:
         def eventType = ''
-        if (params.activityType == 1) {
+        if (params.activityType == '1') {
             eventType = 'Sports and Exercise'
         }
-        else if (params.activityType == 2) {
+        else if (params.activityType == '2') {
             eventType = 'Food and Drink'
         }
-        else if (params.activityType == 3) {
+        else if (params.activityType == '3') {
             eventType = 'Film'
         }
-        else if (params.activityType == 4) {
+        else if (params.activityType == '4') {
             eventType = 'Music'
         }
-        else if (params.activityType == 5) {
+        else if (params.activityType == '5') {
             eventType = 'Outdoor'
         }
 

@@ -94,7 +94,7 @@
                 address = $('#address').val(),
                 startDate = $('#startDate').val(),
                 endDate = $('#endDate').val();
-
+//            console.log("Type: " + activityType);
             geocoder.geocode({'address': address}, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     $.ajax({
