@@ -20,6 +20,7 @@
     ul.event-list {
         list-style: none;
         padding-left: 0;
+    }
     .row.events .header {
         color: #080808;
         font-weight: 700;
@@ -45,6 +46,18 @@
         background-color: #dcdcdc;
         color: #080808;
     }
+
+    .searchbar{
+        float: left;
+    }
+
+    .button-float{
+        float: right;
+        background: #63d297;
+        margin: 25px;
+    }
+
+
 
 
     </style>
@@ -96,8 +109,8 @@
 
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
                 <div class="well">
-                    <h2>Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
-                    <a href="javascript:randomEvent()" class="btn btn-info" role="button">Find Random Event</a>
+                    <h2 class="searchbar">Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
+                    <a href="javascript:randomEvent()" class="btn btn-info button-float" role="button">Find Random Event</a>
                     <table class="order-table table">
 
                         <tbody id="random">
