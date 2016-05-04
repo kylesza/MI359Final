@@ -40,6 +40,16 @@
         color: #080808;
     }
 
+    .searchbar{
+        float: left;
+    }
+
+    .button-float{
+        float: right;
+        background: #63d297;
+        margin: 25px;
+    }
+
 
     </style>
 </head>
@@ -71,6 +81,11 @@
             <div class="content scaffold-list" role="main">
                 <h1 class="header">Activities</h1>
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
+                <h2 class="searchbar">Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
+                <a href="javascript:randomEvent()" class="btn btn-info button-float" role="button">Find Random Event</a>
+                <table class="order-table table">
+
+                <tbody id="random">
                 %{--<div class="well">--}%
                     <table class="table event-table">
                         <thead>
@@ -83,6 +98,8 @@
                                 <th>Description</th>
                             </tr>
                         </thead>
+
+                        <tbody id="activities">
                         <g:each in="${activities}" status="i" var="activityInstance">
                             <g:if test="${activityInstance.approved}">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
@@ -162,7 +179,6 @@
                         '<h1 id="firstHeading" class="firstHeading">'+currentName+'</h1>'+
                         '<div id="bodyContent">'+
                         '<p>'+currentDescription+'</p>'+
-                        '<p>MAYBE EVENTUALLY HAVE THE USERNAME WHO POSTED THE EVENT</p>'+
                         '</div>'+
                         '</div>';
 
@@ -195,5 +211,69 @@
         initMap();
     })(jQuery);
 </script>
+
+<script>
+    var $rows = $('#table tr');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+</script>
+
+<script>
+    (function(document) {
+        'use strict';
+
+        var LightTableFilter = (function(Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function(table) {
+                    Arr.forEach.call(table.tBodies, function(tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
+            }
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function() {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function(input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function() {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+</script>
+
+<script>
+    function randomEvent() {
+        var trs = document.getElementById("activities").getElementsByTagName("tr");
+        var rand = Math.floor( Math.random() * trs.length );
+        trs[rand].style.backgroundColor = "#fff";
+        document.getElementById('random').appendChild(trs[rand]);
+    }
+</script>
+
 </body>
 </html>
