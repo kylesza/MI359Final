@@ -9,6 +9,7 @@
             <thead>
             <tr>
                 <th style="text-align: center;">Username</th>
+                <th style="text-align: center;"></th>
                 <th style="text-align: center;">Delete User</th>
             </tr>
             </thead>
@@ -17,6 +18,12 @@
             <g:each in="${users}">
                 <tr>
                     <td>${it.username}</td>
+                    <td>
+                        <g:form action="updateRole">
+                            <g:hiddenField name="userID" value="${it.id}"/>
+                            <g:submitButton name="Update User Role"></g:submitButton>
+                        </g:form>
+                    </td>
                     <td>
                         <g:form action="deleteUser">
                             <g:hiddenField name="userID" value="${it.id}"/>
