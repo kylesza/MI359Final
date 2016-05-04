@@ -20,6 +20,9 @@
     ul.event-list {
         list-style: none;
         padding-left: 0;
+    .row.events .header {
+        color: #080808;
+        font-weight: 700;
     }
     ul.event-list li {
         list-style: none;
@@ -28,6 +31,22 @@
         font-size: 28px;
         font-weight:700;
     }
+    .scaffold-list table.event-table {
+        color: #080808;
+        border: 1px solid #080808;
+    }
+    .scaffold-list table.event-table td:not(:first-child), th:not(:first-child) {
+        border-left: 1px solid #f5f5f5;
+    }
+    .scaffold-list table.event-table th a {
+        color: #63d297;
+    }
+    .scaffold-list table.event-table tbody tr.even {
+        background-color: #dcdcdc;
+        color: #080808;
+    }
+
+
     </style>
 </head>
 
@@ -82,6 +101,43 @@
                     <table class="order-table table">
 
                         <tbody id="random">
+
+                %{--<div class="well">--}%
+                    <table class="table event-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <g:sortableColumn property="activityName" defaultOrder="desc"
+                                                  title="Activity Name" titleKey="activities.activityName" />
+                                <g:sortableColumn property="activityPrice" title="Activity Price" />
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <g:each in="${activities}" status="i" var="activityInstance">
+                            <g:if test="${activityInstance.approved}">
+                                <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
+                                    <g:if test="${activityInstance.activityType == 1}">
+                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
+                                    </g:if>
+                                    <g:elseif test="${activityInstance.activityType == 2}">
+                                        <td><span></span><img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200"></td>
+                                    </g:elseif>
+                                    <g:elseif test="${activityInstance.activityType == 3}">
+                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
+                                    </g:elseif>
+                                    <g:elseif test="${activityInstance.activityType == 4}">
+                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
+                                    </g:elseif>
+                                    <g:elseif test="${activityInstance.activityType == 5}">
+                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
+                                    </g:elseif>
+                                        <td>${activityInstance.activityName}</td>
+                                        <td>${activityInstance.activityPrice}</td>
+                                        <td>${activityInstance.activityType}</td>
+                                        <td>${activityInstance.activityDescription}</td>
+                                </tr>
+                            </g:if>
+                        </g:each>
                         </tbody>
 
                     </table>
@@ -122,32 +178,18 @@
 
 
 
-    %{--<g:form controller="FindActivities" action="searchResults">--}%
-        %{--Title: <g:textField name="name" value="${nameSearch}" />--}%
-        %{--<g:submitButton name="submit" value="Search" />--}%
-    %{--</g:form>--}%
-
-    %{--<g:if test="${results}">--}%
-        %{--<h1>Search Results</h1>--}%
-        %{--<table>--}%
-            %{--<tr>--}%
-                %{--<th>Title</th>--}%
-                %{--<th>Start Date</th>--}%
-            %{--</tr>--}%
-            %{--<g:each in="${results}">--}%
-                %{--<tr>--}%
-                    %{--<td>${it.title}</td>--}%
-                    %{--<td>${it.startTime}</td>--}%
-                %{--</tr>--}%
-            %{--</g:each>--}%
-        %{--</table>--}%
-    %{--</g:if>--}%
 
 
+                %{--</div>--}%
+            </div>
+                %{--<div class="pagination">--}%
+                    %{--<g:paginate total="${activities}" />--}%
+                %{--</div>--}%
         </div>
     </div>
 
 </div>
+%{--</div>--}%
 <script>
     (function($) {
         function initMap() {

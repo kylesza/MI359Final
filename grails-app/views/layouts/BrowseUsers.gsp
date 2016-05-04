@@ -9,6 +9,24 @@
     <asset:javascript src="application.js"/>
 
     <g:layoutHead/>
+    <style>
+nav.navbar-inverse {
+    background-color: #303a3d;
+    border-color: #ff5252;
+}
+nav.navbar-inverse .navbar-header a {
+    color: #ff5252;
+}
+nav.navbar-inverse ul.nav li a {
+    color: #63d297;
+}
+nav.navbar-inverse ul.nav li:hover {
+    background-color: #080808;
+}
+nav.navbar-inverse ul.nav li:hover a {
+    color: #63d297;
+}
+</style>
 </head>
 <body>
 
@@ -38,6 +56,7 @@
             </sec:ifLoggedIn>
             <sec:ifNotLoggedIn>
                 <li><a href="../auth">Login</a></li>
+                <li><a href="../admin/signup">Sign Up</a></li>
             </sec:ifNotLoggedIn>
         </ul>
     </div>
