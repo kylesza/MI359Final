@@ -1,5 +1,6 @@
 package mi359final
 
+
 import mi359Final.Activities
 
 import mi359Final.UserRole
@@ -7,6 +8,9 @@ import mi359Final.User
 import mi359Final.Role
 
 class AdminController {
+
+    def springSecurityService
+
 
     def index() {
         def activities = Activities.list()
@@ -34,6 +38,7 @@ class AdminController {
         def userRole = new Role('ROLE_USER').save()
         def user = new User(params.username as String, params.password as String).save()
         UserRole.create user, userRole
+        springSecurityService.reauthenticate(user.username)
         redirect(controller: "findActivities", action: "index")
     }
 }
