@@ -79,25 +79,26 @@
                                 <g:sortableColumn property="activityName" defaultOrder="desc"
                                                   title="Activity Name" titleKey="activities.activityName" />
                                 <g:sortableColumn property="activityPrice" title="Activity Price" />
-                                <th></th>
+                                <th>Type</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
                         <g:each in="${activities}" status="i" var="activityInstance">
                             <g:if test="${activityInstance.approved}">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
-                                    <g:if test="${activityInstance.activityType == 1}">
-                                        <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
+                                    <g:if test="${activityInstance.activityType == 'Sports and Exercise'}">
+                                        <td><span></span><img src="http://ghsdawgs.com/students/cherry/sports1.jpg" alt="..." height="200" width="200"></td>
                                     </g:if>
-                                    <g:elseif test="${activityInstance.activityType == 2}">
+                                    <g:elseif test="${activityInstance.activityType == 'Food and Drink'}">
                                         <td><span></span><img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200"></td>
                                     </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 3}">
+                                    <g:elseif test="${activityInstance.activityType == 'Film'}">
                                         <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
                                     </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 4}">
+                                    <g:elseif test="${activityInstance.activityType == 'Music'}">
                                         <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
                                     </g:elseif>
-                                    <g:elseif test="${activityInstance.activityType == 5}">
+                                    <g:elseif test="${activityInstance.activityType == 'Outdoor'}">
                                         <td><span></span><img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200"></td>
                                     </g:elseif>
                                         <td>${activityInstance.activityName}</td>
@@ -146,7 +147,7 @@
                 var currentDescription = events[i].eq(3).text(); // Get event description
                 var currentLabel = labels[labelIndex++ % labels.length]; // Gets correct letter for label
                 var findSpan = ".event-details" + i;
-                console.log(findSpan);
+//                console.log(findSpan);
                 var currentSpan = $(findSpan).eq(0).find('span');// Find the span to add the label to
 
 //                console.log("currentName: " + currentName + "; currentLat: " + currentLat + "; currentLng: " + currentLng

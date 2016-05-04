@@ -89,7 +89,7 @@
             var geocoder = new google.maps.Geocoder();
             var activityName = $('#activityName').val(),
                 activityPrice = $('#activityPrice').val(),
-                activityType = $('#activityType').val(),
+                activityType = $('input[type=radio]:checked').val(),
                 activityDescription = $('#activityDescription').val(),
                 address = $('#address').val(),
                 startDate = $('#startDate').val(),

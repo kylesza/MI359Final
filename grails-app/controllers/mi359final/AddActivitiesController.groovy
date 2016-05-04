@@ -13,9 +13,27 @@ class AddActivitiesController {
     // This runs after user clicks "Submit" button on views/addActivities/index.gsp
     // Working on Constraints
     def saveEvent () {
+        // Figure out event type:
+        def eventType = ''
+        if (params.activityType == 1) {
+            eventType = 'Sports and Exercise'
+        }
+        else if (params.activityType == 2) {
+            eventType = 'Food and Drink'
+        }
+        else if (params.activityType == 3) {
+            eventType = 'Film'
+        }
+        else if (params.activityType == 4) {
+            eventType = 'Music'
+        }
+        else if (params.activityType == 5) {
+            eventType = 'Outdoor'
+        }
+
         // Define a new event:
         def e = new Activities(activityDescription: params.activityDescription, activityName: params.activityName,
-                activityPrice: params.activityPrice, activityType: params.activityType, lat: params.lat,
+                activityPrice: params.activityPrice, activityType: eventType, lat: params.lat,
                 lng: params.lng, approved: params.approved, startDate: params.startDate, endDate: params.endDate)
 
         // Save new event:

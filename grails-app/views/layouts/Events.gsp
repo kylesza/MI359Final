@@ -45,6 +45,7 @@ nav.navbar-inverse ul.nav li:hover a {
         </div>
         <ul class="nav navbar-nav">
             <li><a href="../findActivities/index">Find Activities</a></li>
+            <sec:ifLoggedIn>
             <li><a href="../addActivities/index">Add Activities</a></li>
             <li class="active dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
@@ -57,7 +58,7 @@ nav.navbar-inverse ul.nav li:hover a {
                     </sec:ifAnyGranted>
                 </ul>
             </li>
-            <sec:ifLoggedIn>
+
                 <li>
                     <g:link controller="logout">Logout</g:link>
                 </li>

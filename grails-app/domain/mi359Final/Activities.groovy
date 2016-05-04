@@ -3,7 +3,7 @@ package mi359Final
 class Activities {
     String activityName
     int activityPrice
-    int activityType
+    String activityType
     String startDate
     String endDate
     String activityDescription
