@@ -99,7 +99,7 @@
                                           title="Activity Name" titleKey="activities.activityName" />
                         <g:sortableColumn property="activityPrice" title="Activity Price" />
                         <th>Type</th>
-                        <th>Date</th>
+                        <g:sortableColumn property="startDate" title="Dates" />
                         <th>Description</th>
                     </tr>
                     </thead>

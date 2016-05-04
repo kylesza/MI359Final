@@ -24,9 +24,11 @@ class BrowseUsersController {
         }
         else if (params.newRole == '2'){
             def userRole = new Role('ROLE_BUSINESS').save()
+            redirect(action: 'index')
         }
         else if (params.newRole == '3'){
             def userRole = new Role('ROLE_USER').save()
+            redirect(action: 'index')
         }
     }
 
