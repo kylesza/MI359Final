@@ -32,40 +32,45 @@
                 <ul id="errorList"></ul>
             </div>
             <div id="floating-panel">
-                <g:form id="geocode-form">
+                <g:form id="geocode-form" action="matchVal">
                     <div class="row">
                         <div class="col-sm-8">
-                            Name: <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" />
+                            <b>Name:</b> <g:textField id="activityName" name="activityName" placeholder="eg. Bowling" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Price: <g:field type="activityPrice" name="activityPrice" placeholder="420" />
+                            <b>Price:</b> <g:field type="activityPrice" name="activityPrice" placeholder="420" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Type: <g:field type="activityType" name="activityType" placeholder="420" />
+                            <b>Description:</b> <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Description: <g:textField id="activityDescription" name="activityDescription" placeholder="eg. Bowling" />
+                            <b>Address:</b> <g:textField id="address" name="address" value="" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Address: <g:textField id="address" name="address" value="" />
+                            <b>Start Date:</b> <g:textField id="startDate" name="startDate" placeholder="xx/xx/xx" /><br>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            Start Date: <g:textField id="startDate" name="startDate" placeholder="xx/xx/xx" /><br>
+                            <b>End Date:</b> <g:textField id="endDate" name="endDate" placeholder="xx/xx/xx" /><br>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            End Date: <g:textField id="endDate" name="endDate" placeholder="xx/xx/xx" /><br>
+                            <b>Activity Type:</b>
+                            <g:radioGroup id="activityType" name="activityType"
+                                  labels="['Sports and Exercise','Food and Drink','Film','Music','Outdoor']"
+                                  values="[1,2,3,4,5]">
+                                    <p>${it.label} ${it.radio} ${it.value}</p>
+                            </g:radioGroup>
                         </div>
                     </div>
                     <input id="submit" type="button" value="Submit">

@@ -132,6 +132,7 @@
             </sec:ifLoggedIn>
             <sec:ifNotLoggedIn>
                 <li class="active"><a href="../auth">Login</a></li>
+                <li><a href="../admin/signup">Sign Up</a></li>
             </sec:ifNotLoggedIn>
         </ul>
     </div>
