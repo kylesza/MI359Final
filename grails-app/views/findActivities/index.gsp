@@ -82,24 +82,31 @@
                 <h1 class="header">Activities</h1>
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
                 <h2 class="searchbar">Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
-                <a href="javascript:randomEvent()" class="btn btn-info button-float" role="button">Find Random Event</a>
-                <table class="order-table table">
+                <a href="javascript:randomEvent()"  type="Submit" value="Submit" class="btn btn-info button-float enableOnInput" role="button">Find Random Event</a>
 
-                <tbody id="random">
-                %{--<div class="well">--}%
-                    <table class="table event-table">
-                        <thead>
-                            <tr>
-                                <th>Event</th>
-                                <g:sortableColumn property="activityName" defaultOrder="desc"
-                                                  title="Activity Name" titleKey="activities.activityName" />
-                                <g:sortableColumn property="activityPrice" title="Activity Price" />
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
 
-                        <tbody id="activities">
+                <table class="order-table table event-table">
+
+                    <tbody id="random">
+                    </tbody>
+                </table>
+
+                <table class="order-table table event-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <g:sortableColumn property="activityName" defaultOrder="desc"
+                                          title="Activity Name" titleKey="activities.activityName" />
+                        <g:sortableColumn property="activityPrice" title="Activity Price" />
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+
+
+
+
+                    <tbody id="activities">
                         <g:each in="${activities}" status="i" var="activityInstance">
                             <g:if test="${activityInstance.approved}">
                                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">
@@ -120,15 +127,64 @@
                                             <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
                                         </g:elseif>
                                     </td>
-                                        <td>${activityInstance.activityName}</td>
-                                        <td>${activityInstance.activityPrice}</td>
-                                        <td>${activityInstance.activityType}</td>
-                                        <td>${activityInstance.activityDescription}</td>
+                                    <td>${activityInstance.activityName}</td>
+                                    <td>$${activityInstance.activityPrice}</td>
+                                    <td>${activityInstance.activityType}</td>
+                                    <td>${activityInstance.activityDescription}</td>
                                 </tr>
                             </g:if>
                         </g:each>
-                        </tbody>
-                    </table>
+                    </tbody>
+                </table>
+
+
+
+                %{--<div class="well">--}%
+                    %{--<table class="table event-table">--}%
+                        %{--<thead>--}%
+                            %{--<tr>--}%
+                                %{--<th>Event</th>--}%
+                                %{--<g:sortableColumn property="activityName" defaultOrder="desc"--}%
+                                                  %{--title="Activity Name" titleKey="activities.activityName" />--}%
+                                %{--<g:sortableColumn property="activityPrice" title="Activity Price" />--}%
+                                %{--<th>Type</th>--}%
+                                %{--<th>Description</th>--}%
+                            %{--</tr>--}%
+                        %{--</thead>--}%
+
+
+
+
+                        %{--<tbody id="activities">--}%
+                        %{--<g:each in="${activities}" status="i" var="activityInstance">--}%
+                            %{--<g:if test="${activityInstance.approved}">--}%
+                                %{--<tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">--}%
+                                    %{--<td><span></span>--}%
+                                        %{--<g:if test="${activityInstance.activityType == 'Sports and Exercise'}">--}%
+                                            %{--<img src="http://ghsdawgs.com/students/cherry/sports1.jpg" alt="..." height="200" width="200">--}%
+                                        %{--</g:if>--}%
+                                        %{--<g:elseif test="${activityInstance.activityType == 'Food and Drink'}">--}%
+                                            %{--<img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200">--}%
+                                        %{--</g:elseif>--}%
+                                        %{--<g:elseif test="${activityInstance.activityType == 'Film'}">--}%
+                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
+                                        %{--</g:elseif>--}%
+                                        %{--<g:elseif test="${activityInstance.activityType == 'Music'}">--}%
+                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
+                                        %{--</g:elseif>--}%
+                                        %{--<g:elseif test="${activityInstance.activityType == 'Outdoor'}">--}%
+                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
+                                        %{--</g:elseif>--}%
+                                    %{--</td>--}%
+                                        %{--<td>${activityInstance.activityName}</td>--}%
+                                        %{--<td>${activityInstance.activityPrice}</td>--}%
+                                        %{--<td>${activityInstance.activityType}</td>--}%
+                                        %{--<td>${activityInstance.activityDescription}</td>--}%
+                                %{--</tr>--}%
+                            %{--</g:if>--}%
+                        %{--</g:each>--}%
+                        %{--</tbody>--}%
+                    %{--</table>--}%
                 %{--</div>--}%
             </div>
                 %{--<div class="pagination">--}%
@@ -274,6 +330,15 @@
         document.getElementById('random').appendChild(trs[rand]);
     }
 </script>
+
+<script>
+    $('input:submit').click(function(){
+        $('input:submit').attr("disabled", true);
+    });
+</script>
+
+
+
 
 </body>
 </html>
