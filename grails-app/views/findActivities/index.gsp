@@ -118,13 +118,13 @@
                                             <img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200">
                                         </g:elseif>
                                         <g:elseif test="${activityInstance.activityType == 'Film'}">
-                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                            <img src="http://s846.photobucket.com/user/Haakan/media/Film2.png.html" alt="..." height="200" width="200">
                                         </g:elseif>
                                         <g:elseif test="${activityInstance.activityType == 'Music'}">
-                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                            <img src="https://pbs.twimg.com/profile_images/694543059695071232/15ZV79wW_400x400.png" alt="..." height="200" width="200">
                                         </g:elseif>
                                         <g:elseif test="${activityInstance.activityType == 'Outdoor'}">
-                                            <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
+                                            <img src="https://pbs.twimg.com/profile_images/606903680059752449/8zBk8Nw4.jpg" alt="..." height="200" width="200">
                                         </g:elseif>
                                     </td>
                                     <td>${activityInstance.activityName}</td>
