@@ -99,6 +99,7 @@
                                           title="Activity Name" titleKey="activities.activityName" />
                         <g:sortableColumn property="activityPrice" title="Activity Price" />
                         <th>Type</th>
+                        <th>Date</th>
                         <th>Description</th>
                     </tr>
                     </thead>
@@ -130,70 +131,19 @@
                                     <td>${activityInstance.activityName}</td>
                                     <td>$${activityInstance.activityPrice}</td>
                                     <td>${activityInstance.activityType}</td>
+                                    <td>Starts: ${activityInstance.startDate}<br><br>
+                                        Ends: ${activityInstance.endDate}
+                                    </td>
                                     <td>${activityInstance.activityDescription}</td>
                                 </tr>
                             </g:if>
                         </g:each>
                     </tbody>
                 </table>
-
-
-
-                %{--<div class="well">--}%
-                    %{--<table class="table event-table">--}%
-                        %{--<thead>--}%
-                            %{--<tr>--}%
-                                %{--<th>Event</th>--}%
-                                %{--<g:sortableColumn property="activityName" defaultOrder="desc"--}%
-                                                  %{--title="Activity Name" titleKey="activities.activityName" />--}%
-                                %{--<g:sortableColumn property="activityPrice" title="Activity Price" />--}%
-                                %{--<th>Type</th>--}%
-                                %{--<th>Description</th>--}%
-                            %{--</tr>--}%
-                        %{--</thead>--}%
-
-
-
-
-                        %{--<tbody id="activities">--}%
-                        %{--<g:each in="${activities}" status="i" var="activityInstance">--}%
-                            %{--<g:if test="${activityInstance.approved}">--}%
-                                %{--<tr class="${(i % 2) == 0 ? 'even' : 'odd'} event-details${i}">--}%
-                                    %{--<td><span></span>--}%
-                                        %{--<g:if test="${activityInstance.activityType == 'Sports and Exercise'}">--}%
-                                            %{--<img src="http://ghsdawgs.com/students/cherry/sports1.jpg" alt="..." height="200" width="200">--}%
-                                        %{--</g:if>--}%
-                                        %{--<g:elseif test="${activityInstance.activityType == 'Food and Drink'}">--}%
-                                            %{--<img src="http://i.imgur.com/8pHJELK.jpg" alt="..." height="200" width="200">--}%
-                                        %{--</g:elseif>--}%
-                                        %{--<g:elseif test="${activityInstance.activityType == 'Film'}">--}%
-                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
-                                        %{--</g:elseif>--}%
-                                        %{--<g:elseif test="${activityInstance.activityType == 'Music'}">--}%
-                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
-                                        %{--</g:elseif>--}%
-                                        %{--<g:elseif test="${activityInstance.activityType == 'Outdoor'}">--}%
-                                            %{--<img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">--}%
-                                        %{--</g:elseif>--}%
-                                    %{--</td>--}%
-                                        %{--<td>${activityInstance.activityName}</td>--}%
-                                        %{--<td>${activityInstance.activityPrice}</td>--}%
-                                        %{--<td>${activityInstance.activityType}</td>--}%
-                                        %{--<td>${activityInstance.activityDescription}</td>--}%
-                                %{--</tr>--}%
-                            %{--</g:if>--}%
-                        %{--</g:each>--}%
-                        %{--</tbody>--}%
-                    %{--</table>--}%
-                %{--</div>--}%
             </div>
-                %{--<div class="pagination">--}%
-                    %{--<g:paginate total="${activities}" />--}%
-                %{--</div>--}%
         </div>
     </div>
 </div>
-%{--</div>--}%
 <script>
     (function($) {
         function initMap() {
