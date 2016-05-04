@@ -74,9 +74,19 @@
 
 
 
+
                 <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
                 <div class="well">
                     <h2>Search: <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter"> </h2>
+                    <a href="javascript:randomEvent()" class="btn btn-info" role="button">Find Random Event</a>
+                    <table class="order-table table">
+
+                        <tbody id="random">
+                        </tbody>
+
+                    </table>
+
+
 
                     <table class="order-table table">
                     <tr>
@@ -87,8 +97,10 @@
                         <th></th>
                     </tr>
                     </thead>
-                    <g:each in="${activities}" status="i" var="activityInstance">
-                            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    <tbody id="activities">
+
+                        <g:each in="${activities}" status="i" var="activityInstance">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                             <td>
                                 <img src="http://beartalkpodcast.com/imgs/BearTalkLogo.jpg" alt="..." height="200" width="200">
                             </td>
@@ -107,6 +119,8 @@
                 </div>
             </div>
             <hr>
+
+
 
     %{--<g:form controller="FindActivities" action="searchResults">--}%
         %{--Title: <g:textField name="name" value="${nameSearch}" />--}%
@@ -259,6 +273,15 @@
         });
 
     })(document);
+</script>
+
+<script>
+    function randomEvent() {
+        var trs = document.getElementById("activities").getElementsByTagName("tr");
+        var rand = Math.floor( Math.random() * trs.length );
+        trs[rand].style.backgroundColor = "#fff";
+        document.getElementById('random').appendChild(trs[rand]);
+    }
 </script>
 
 </body>
